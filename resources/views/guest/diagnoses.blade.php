@@ -136,7 +136,7 @@
                                 <!-- <div class="col-12 col-sm-12">
                                     <input type="text" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Nama Anda" style="height: 55px;">
                                 </div> -->
-                                <div class="col-12 col-sm-12">
+                                <!-- <div class="col-12 col-sm-12">
                                     <input type="number" name="km" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Kilo Meter Sepeda Motor" style="height: 55px;">
                                 </div> 
                                 <div class="col-12 col-sm-12">
@@ -145,14 +145,14 @@
                                     <option value="{{ $m->id }}">{{ $m->name }}</option>
                                     @endforeach
                                   </select>
-                                </div> 
+                                </div>  -->
                                 <p>Centang data gejala sesuai dengan apa yang pengunjung 
                                   alami untuk memperoleh informasi yang benar. 
                                 </p>
                                 @foreach($symptom as $s)
                                 <div class="col-12 col-sm-12 checkbox-wrapper-13">
                                     <input id="c1-13" type="checkbox" value="{{ $s->code }}" name="{{ $s->id }}">
-                                    <label for="c1-13">{{ $s->name }}</label>
+                                    <label for="c1-13">{{$s->code}} &nbsp; {{ $s->name }}</label>
                                 </div>
                                 @endforeach
                                 <button class="btn w-100 py-3" style="background-color:#354F8E;color:white;">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Symptom;
+use App\Models\Damage;
 use App\Models\Sparepart;
 use App\Models\Article;
 use App\Models\Motorcycle;
@@ -39,21 +40,38 @@ class GuestController extends Controller
         // ]);
 
         //Mencari Id Yang diinputkan
-        //$qry = Rule::where('id',$request->id)->get(); 
-
-        //Mencari Id Yang diinputkan
         $qry = DB::table('rules')->select('id');
         $rule_input = array();
-        foreach ($request->all() as $where) {
-            $qry->where('id','=','1');
+        foreach ($request->except('_token') as $where) {
+            $qry->where($where,'=','1');
             array_push($rule_input,$where);
         }
         $qry->whereRaw('1 = 1')->get();
-        $id = '';
+        $id='';
 
         //Menentukan Rule
         $rule = [
-            ['G001'],
+            // K001
+            // ['G001'],['G004'],['G007'],['G012'],
+
+            // ['G001','G004'],['G001','G007'],['G001','G012'],
+            // ['G004','G007'],['G004','G012'],
+            // ['G007','G012'],
+
+            // ['G001','G004','G007'],['G004','G007','G012'],
+            // ['G001','G007','G012'],['G001','G004','G012'],
+            
+            ['G001','G004','G007','G012'],
+            //K002
+            // ['G002'],['G005'],['G009'],['G016'],
+
+            // ['G002','G005'],['G002','G009'],['G002','G016'],
+            // ['G005','G009'],['G005','G016'],
+            // ['G009','G016'],
+
+            // ['G002','G005','G009'],['G005','G009','G016'],
+            // ['G002','G009','G016'],['G002','G005','G016'],
+
             ['G002','G005','G009','G016'],
         ];
 
@@ -67,11 +85,12 @@ class GuestController extends Controller
             }
         }
 
-        //Jika ditemukan akan menampilkan info dan solusi dari penyakit
+        //Jika ditemukan akan menampilkan info dan solusi dari kerusakan
         if($status==true){
             $id = $qry->value('id');
             $temp_damage = Damage::where('id','=',$id)->get();
-            return view('guest.diagnosesresult',compact(['temp_damage']));
+            $temp_symptom = Symptom::where('id','=',$id)->get();
+            return view('guest.diagnosesresult',compact(['temp_damage','temp_symptom']));
         }else{
             return view('guest.diagnosesnothing');
         }

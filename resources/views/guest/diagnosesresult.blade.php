@@ -21,8 +21,6 @@
                 <div class="col-lg-6">
                     <img src="{{ asset('guest/assets/img/diagnosa3.png') }}" width="100%">
                 </div>
-
-                @foreach ($temp_damage as $td)
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <!-- <h5 class="text-white mb-5" style="text-align:justify;">
                         Nama : Pramarta Rizky
@@ -30,15 +28,17 @@
                     <h5 class="text-white mb-5" style="text-align:justify;">
                         Jenis Sepeda Motor : Vespa Matic
                     </h5> -->
+                    @foreach ($temp_damage as $td)
                     <h5 class="text-white mb-5" style="text-align:justify;">
                         Kerusakan : {{ $td->name }}
                     </h5>
+                    @endforeach
+                    @foreach ($temp_symptom as $ts)
                     <h5 class="text-white mb-5" style="text-align:justify;">
-                        Gejala : 
+                        Gejala : {{ $ts->name }}
                     </h5>
+                    @endforeach
                 </div>
-                @endforeach
-
                 <a class="btn rounded-pill py-3 px-5 me-3" 
                     style="margin-top:45px;background-color:white;color:#354F8E;" 
                     href="{{ route('guest.diagnoses') }}">
