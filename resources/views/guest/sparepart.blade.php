@@ -24,7 +24,7 @@
                         <img class="img-fluid w-100" src="{{asset('storage/'.$s->image)}}" alt="">
                         <div class="p-4">
                             <h5>{{ $s->name }}</h5>
-                            <a class="btn btn-dark py-1 px-3" style="color:white;margin-top:15px;" href="">Selengkapnya</a>
+                            <a class="btn btn-dark py-1 px-3" style="color:white;margin-top:15px;" href="{{ route('guest.sparepart.detail', $s->id) }}">Selengkapnya</a>
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,7 @@
     <div class="container-fluid sticky-top shadow-sm mb-5" style="background-color:#354F8E;">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light py-3 py-lg-0" >
-                <a href="index.html" class="navbar-brand">
+                <a href="{{ route('guest.index') }}" class="navbar-brand">
                     <h2 class="" style="color:white;">DIAGTORSI</h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

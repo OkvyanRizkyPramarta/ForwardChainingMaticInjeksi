@@ -31,7 +31,9 @@ Route::post('/diagnoses/proses', [GuestController::class, 'processDiagnoses'])->
 // Route::get('/diagnoses/result', [GuestController::class, 'diagnosesResult'])->name('guest.diagnoses.result');
 // Route::get('/diagnoses/result/nothing', [GuestController::class, 'diagnosesNothing'])->name('guest.diagnoses.result.nothing');
 Route::get('/sparepart', [GuestController::class, 'sparepart'])->name('guest.sparepart');
+Route::get('/sparepart/{sparepart}', [GuestController::class, 'sparepartdetail'])->name('guest.sparepart.detail');
 Route::get('/article', [GuestController::class, 'article'])->name('guest.article');
+Route::get('/article/{article}', [GuestController::class, 'articledetail'])->name('guest.article.detail');
 
 
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
