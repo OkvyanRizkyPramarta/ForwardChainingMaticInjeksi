@@ -22,22 +22,19 @@
                     <img src="{{ asset('guest/assets/img/diagnosa3.png') }}" width="100%">
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <!-- <h5 class="text-white mb-5" style="text-align:justify;">
-                        Nama : Pramarta Rizky
-                    </h5>
-                    <h5 class="text-white mb-5" style="text-align:justify;">
-                        Jenis Sepeda Motor : Vespa Matic
-                    </h5> -->
                     @foreach ($temp_damage as $td)
-                    <h5 class="text-white mb-5" style="text-align:justify;">
+                    <h5 class="text-white mb-5" style="text-align:justify;margin-top:10%;">
                         Kerusakan : {{ $td->name }}
                     </h5>
-                    @endforeach
-                    @foreach ($temp_symptom as $ts)
+                    @endforeach 
+                    @foreach ($temp_motorcycle as $tm)
                     <h5 class="text-white mb-5" style="text-align:justify;">
-                        Gejala : {{ $ts->name }}
+                        Jenis Motor : {{ $tm->name }}
                     </h5>
                     @endforeach
+                    <h5 class="text-white mb-5" style="text-align:justify;">
+                        Kilo Meter : {{ $temp_km }}
+                    </h5>
                 </div>
                 <a class="btn rounded-pill py-3 px-5 me-3" 
                     style="margin-top:45px;background-color:white;color:#354F8E;" 

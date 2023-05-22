@@ -11,6 +11,7 @@ class Rule extends Model
     use HasFactory;
 
     protected $fillable = [
+        'damage_id',
         'G001',
         'G002',
         'G003',

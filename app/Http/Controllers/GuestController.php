@@ -40,39 +40,67 @@ class GuestController extends Controller
         // ]);
 
         //Mencari Id Yang diinputkan
-        $qry = DB::table('rules')->select('id');
+        $qry = DB::table('rules')->select('damage_id');
         $rule_input = array();
-        foreach ($request->except('_token') as $where) {
+        foreach ($request->except('_token','motorcycle_id','km') as $where) {
             $qry->where($where,'=','1');
             array_push($rule_input,$where);
         }
         $qry->whereRaw('1 = 1')->get();
-        $id='';
 
         //Menentukan Rule
         $rule = [
             // K001
-            // ['G001'],['G004'],['G007'],['G012'],
+            ['G001'],['G004'],['G007'],['G012'],
 
-            // ['G001','G004'],['G001','G007'],['G001','G012'],
-            // ['G004','G007'],['G004','G012'],
-            // ['G007','G012'],
+            ['G001','G004'],['G001','G007'],['G001','G012'],
+            ['G004','G007'],['G004','G012'],
+            ['G007','G012'],
 
-            // ['G001','G004','G007'],['G004','G007','G012'],
-            // ['G001','G007','G012'],['G001','G004','G012'],
+            ['G001','G004','G007'],['G004','G007','G012'],
+            ['G001','G007','G012'],['G001','G004','G012'],
             
             ['G001','G004','G007','G012'],
+
             //K002
-            // ['G002'],['G005'],['G009'],['G016'],
+            ['G002'],['G005'],['G009'],['G016'],
 
-            // ['G002','G005'],['G002','G009'],['G002','G016'],
-            // ['G005','G009'],['G005','G016'],
-            // ['G009','G016'],
+            ['G002','G005'],['G002','G009'],['G002','G016'],
+            ['G005','G009'],['G005','G016'],
+            ['G009','G016'],
 
-            // ['G002','G005','G009'],['G005','G009','G016'],
-            // ['G002','G009','G016'],['G002','G005','G016'],
+            ['G002','G005','G009'],['G005','G009','G016'],
+            ['G002','G009','G016'],['G002','G005','G016'],
 
             ['G002','G005','G009','G016'],
+
+            // K003
+            ['G008','G012','G018'],
+
+            // K004
+            ['G019'],
+            ['G004','G006','G007','G012','G017','G019'],
+
+            // K005
+            ['G006','G010','G011','G012'],
+
+            // K006
+            ['G019'],
+            ['G019','G020'],
+
+            // K007
+            ['G019'],
+            ['G006','G012','G014','G017','G019'],
+
+            // K008
+            ['G003'],['G019'],['G020'],
+            ['G003','G019','G020'],
+
+            // K009
+            ['G003'],['G015'],['G019'],
+            ['G003','G015'],['G003','G019'],['G015','G019'],
+            ['G003','G015','G019'],
+            ['G003','G015','G019'],
         ];
 
         $status=false;
@@ -88,9 +116,11 @@ class GuestController extends Controller
         //Jika ditemukan akan menampilkan info dan solusi dari kerusakan
         if($status==true){
             $id = $qry->value('id');
+            $mc = $request->input('motorcycle_id');
             $temp_damage = Damage::where('id','=',$id)->get();
-            $temp_symptom = Symptom::where('id','=',$id)->get();
-            return view('guest.diagnosesresult',compact(['temp_damage','temp_symptom']));
+            $temp_km = $request->input('km');
+            $temp_motorcycle = Motorcycle::where('id','=',$mc)->get();
+            return view('guest.diagnosesresult',compact(['temp_damage','temp_km','temp_motorcycle']));
         }else{
             return view('guest.diagnosesnothing');
         }
@@ -135,8 +165,22 @@ class GuestController extends Controller
         return view('guest.sparepart', ['sparepart' => Sparepart::index()]);
     }
 
+    public function sparepartdetail(Sparepart $sparepart)
+    {
+        $newsparepart = Sparepart::indexLimit();
+
+        return view('guest.sparepartdetail', compact('sparepart','newsparepart'));
+    }
+
     public function article()
     {
         return view('guest.article', ['article' => Article::index()]);
+    }
+
+    public function articledetail(Article $article)
+    {
+        $newarticle = Article::indexLimit();
+
+        return view('guest.articledetail', compact('article','newarticle'));
     }
 }

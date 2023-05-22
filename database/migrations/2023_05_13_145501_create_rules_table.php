@@ -15,7 +15,7 @@ class CreateRulesTable extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            //$table->unsignedBigInteger('damage_id');
+            $table->unsignedBigInteger('damage_id');
             $table->tinyInteger('G001');
             $table->tinyInteger('G002');
             $table->tinyInteger('G003');
@@ -38,7 +38,7 @@ class CreateRulesTable extends Migration
             $table->tinyInteger('G020');
             $table->timestamps();
 
-            //$table->foreign('damage_id')->references('id')->on('damages');
+            $table->foreign('damage_id')->references('id')->on('damages');
         });
     }
 
