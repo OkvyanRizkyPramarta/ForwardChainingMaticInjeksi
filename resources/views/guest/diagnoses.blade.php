@@ -137,21 +137,21 @@
                                     <input type="text" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Nama Anda" style="height: 55px;">
                                 </div> -->
                                 <div class="col-12 col-sm-12">
-                                    <input type="number" name="km" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Kilo Meter Sepeda Motor" style="height: 55px;">
-                                </div> 
-                                <div class="col-12 col-sm-12">
                                   <select id="motorcycle" name="motorcycle_id" class="form-control bg-light border-0">
                                     @foreach($motorcycle as $m)
                                     <option value="{{ $m->id }}">{{ $m->name }}</option>
                                     @endforeach
                                   </select>
                                 </div> 
+                                <div class="col-12 col-sm-12">
+                                    <input type="number" name="km" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Kilo Meter Sepeda Motor" style="height: 55px;">
+                                </div> 
                                 <p>Centang data gejala sesuai dengan apa yang pengunjung 
                                   alami untuk memperoleh informasi yang benar. 
                                 </p>
                                 @foreach($symptom as $s)
                                 <div class="col-12 col-sm-12 checkbox-wrapper-13">
-                                    <input id="c1-13" type="checkbox" value="{{ $s->code }}" name="{{ $s->id }}">
+                                    <input id="c1-13" type="checkbox" value="{{ $s->id }}" name="symptom_id[]">
                                     <label for="c1-13">{{$s->code}} &nbsp; {{ $s->name }}</label>
                                 </div>
                                 @endforeach

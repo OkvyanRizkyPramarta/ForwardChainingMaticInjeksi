@@ -21,15 +21,18 @@
                 <div class="col-lg-6">
                     <img src="{{ asset('guest/assets/img/diagnosa3.png') }}" width="100%">
                 </div>
+
+                
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    @foreach ($temp_damage as $td)
-                    <h5 class="text-white mb-5" style="text-align:justify;margin-top:10%;">
-                        Kerusakan : {{ $td->name }}
-                    </h5>
-                    @endforeach 
                     @foreach ($temp_motorcycle as $tm)
                     <h5 class="text-white mb-5" style="text-align:justify;">
                         Jenis Motor : {{ $tm->name }}
+                    </h5>
+                    <h5 class="text-white mb-5" style="text-align:justify;">
+                        Kerusakan : </br>
+                        @foreach ($temp_damage as $td)
+                            {{ $td->name }} </br>
+                        @endforeach
                     </h5>
                     @endforeach
                     <h5 class="text-white mb-5" style="text-align:justify;">

@@ -40,113 +40,103 @@ class GuestController extends Controller
         // ]);
 
         //Mencari Id Yang diinputkan
-        $qry = DB::table('rules')->select('damage_id');
-        $rule_input = array();
-        foreach ($request->except('_token','motorcycle_id','km') as $where) {
-            $qry->where($where,'=','1');
-            array_push($rule_input,$where);
-        }
-        $qry->whereRaw('1 = 1')->get();
 
-        //Menentukan Rule
-        $rule = [
-            // K001
-            ['G001'],['G004'],['G007'],['G012'],
+        $rules = Rule::with('damage', 'symptom')->
+            whereIn('symptom_id', $request->get('symptom_id'))
+        ->get();
 
-            ['G001','G004'],['G001','G007'],['G001','G012'],
-            ['G004','G007'],['G004','G012'],
-            ['G007','G012'],
+        $mc = $request->input('motorcycle_id');
+        $temp_damage = $rules->pluck('damage');
+        $temp_km = $request->input('km');
+        $temp_motorcycle = Motorcycle::where('id','=',$mc)->get();
 
-            ['G001','G004','G007'],['G004','G007','G012'],
-            ['G001','G007','G012'],['G001','G004','G012'],
+        return view('guest.diagnosesresult',compact(['temp_damage','temp_km','temp_motorcycle']));
+
+        // //Mencari Id Yang diinputkan
+        // $qry = DB::table('rules')->select('damage_id');
+        // $rule_input = array();
+        // foreach ($request->except('_token','motorcycle_id','km') as $where) {
+        //     $qry->where($where,'=','1');
+        //     array_push($rule_input,$where);
+        // }
+        // $qry->whereRaw('1 = 1')->get();
+
+        // //Menentukan Rule
+        // $rule = [
+        //     // K001
+        //     ['G001'],['G004'],['G007'],['G012'],
+
+        //     ['G001','G004'],['G001','G007'],['G001','G012'],
+        //     ['G004','G007'],['G004','G012'],
+        //     ['G007','G012'],
+
+        //     ['G001','G004','G007'],['G004','G007','G012'],
+        //     ['G001','G007','G012'],['G001','G004','G012'],
             
-            ['G001','G004','G007','G012'],
+        //     ['G001','G004','G007','G012'],
 
-            //K002
-            ['G002'],['G005'],['G009'],['G016'],
+        //     //K002
+        //     ['G002'],['G005'],['G009'],['G016'],
 
-            ['G002','G005'],['G002','G009'],['G002','G016'],
-            ['G005','G009'],['G005','G016'],
-            ['G009','G016'],
+        //     ['G002','G005'],['G002','G009'],['G002','G016'],
+        //     ['G005','G009'],['G005','G016'],
+        //     ['G009','G016'],
 
-            ['G002','G005','G009'],['G005','G009','G016'],
-            ['G002','G009','G016'],['G002','G005','G016'],
+        //     ['G002','G005','G009'],['G005','G009','G016'],
+        //     ['G002','G009','G016'],['G002','G005','G016'],
 
-            ['G002','G005','G009','G016'],
+        //     ['G002','G005','G009','G016'],
 
-            // K003
-            ['G008','G012','G018'],
+        //     // K003
+        //     ['G008','G012','G018'],
 
-            // K004
-            ['G019'],
-            ['G004','G006','G007','G012','G017','G019'],
+        //     // K004
+        //     ['G019'],
+        //     ['G004','G006','G007','G012','G017','G019'],
 
-            // K005
-            ['G006','G010','G011','G012'],
+        //     // K005
+        //     ['G006','G010','G011','G012'],
 
-            // K006
-            ['G019'],
-            ['G019','G020'],
+        //     // K006
+        //     ['G019'],
+        //     ['G019','G020'],
 
-            // K007
-            ['G019'],
-            ['G006','G012','G014','G017','G019'],
+        //     // K007
+        //     ['G019'],
+        //     ['G006','G012','G014','G017','G019'],
 
-            // K008
-            ['G003'],['G019'],['G020'],
-            ['G003','G019','G020'],
+        //     // K008
+        //     ['G003'],['G019'],['G020'],
+        //     ['G003','G019','G020'],
 
-            // K009
-            ['G003'],['G015'],['G019'],
-            ['G003','G015'],['G003','G019'],['G015','G019'],
-            ['G003','G015','G019'],
-            ['G003','G015','G019'],
-        ];
+        //     // K009
+        //     ['G003'],['G015'],['G019'],
+        //     ['G003','G015'],['G003','G019'],['G015','G019'],
+        //     ['G003','G015','G019'],
+        //     ['G003','G015','G019'],
+        // ];
 
-        $status=false;
+        // $status=false;
 
-        //Mencocokan gejala yang di inputkan user dengan rule yang ada
-        for($i=0; $i < sizeof($rule); $i++){
-            $result = ($rule_input==$rule[$i]);
-            if($result){
-                $status=true;
-            }
-        }
-
-        //Jika ditemukan akan menampilkan info dan solusi dari kerusakan
-        if($status==true){
-            $id = $qry->value('id');
-            $mc = $request->input('motorcycle_id');
-            $temp_damage = Damage::where('id','=',$id)->get();
-            $temp_km = $request->input('km');
-            $temp_motorcycle = Motorcycle::where('id','=',$mc)->get();
-            return view('guest.diagnosesresult',compact(['temp_damage','temp_km','temp_motorcycle']));
-        }else{
-            return view('guest.diagnosesnothing');
-        }
-
-        // $diagnoses = new Diagnoses;
-        // $diagnoses->id = $request->get('id');
-        // $diagnoses->km = $request->get('km');
-
-        // $motorcycle = new Motorcycle;
-        // $motorcycle->id = $request->get('motorcycle_id');
-
-        // $rule = new Rule;
-        // $rule->id = $request->get('rule_id');
-
-        // $diagnoses->motorcycle()->associate($motorcycle);
-        // $diagnoses->rule()->associate($rule);
-
-        // if ($validator->fails()) {
-        //     Alert::toast($validator->messages()->all()[0], 'error');
-        //     return redirect()->back()->withInput();
+        // //Mencocokan gejala yang di inputkan user dengan rule yang ada
+        // for($i=0; $i < sizeof($rule); $i++){
+        //     $result = ($rule_input==$rule[$i]);
+        //     if($result){
+        //         $status=true;
+        //     }
         // }
 
-        // $diagnoses->save();
-
-        // Alert::toast('Data Gejala Sudah Diproses.', 'success');
-        // return redirect()->route('guest.diagnoses.result');
+        // //Jika ditemukan akan menampilkan info dan solusi dari kerusakan
+        // if($status==true){
+        //     $id = $qry->value('id');
+        //     $mc = $request->input('motorcycle_id');
+        //     $temp_damage = Damage::where('id','=',$id)->get();
+        //     $temp_km = $request->input('km');
+        //     $temp_motorcycle = Motorcycle::where('id','=',$mc)->get();
+        //     return view('guest.diagnosesresult',compact(['temp_damage','temp_km','temp_motorcycle']));
+        // }else{
+        //     return view('guest.diagnosesnothing');
+        // }
 
     }
 

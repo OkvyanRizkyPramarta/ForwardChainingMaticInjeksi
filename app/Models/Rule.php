@@ -12,26 +12,27 @@ class Rule extends Model
 
     protected $fillable = [
         'damage_id',
-        'G001',
-        'G002',
-        'G003',
-        'G004',
-        'G005',
-        'G006',
-        'G007',
-        'G008',
-        'G009',
-        'G010',
-        'G011',
-        'G012',
-        'G013',
-        'G014',
-        'G015',
-        'G016',
-        'G017',
-        'G018',
-        'G019',
-        'G020',
+        'symptom_id',
+        // 'G001',
+        // 'G002',
+        // 'G003',
+        // 'G004',
+        // 'G005',
+        // 'G006',
+        // 'G007',
+        // 'G008',
+        // 'G009',
+        // 'G010',
+        // 'G011',
+        // 'G012',
+        // 'G013',
+        // 'G014',
+        // 'G015',
+        // 'G016',
+        // 'G017',
+        // 'G018',
+        // 'G019',
+        // 'G020',
     ];
     
     public static function index()
@@ -47,5 +48,13 @@ class Rule extends Model
     public static function edit(Request $request, Rule $rule)
     {
         $rule->update($request->all());
+    }
+
+    public function damage(){
+        return $this->belongsTo(Damage::class);
+    }
+
+    public function symptom(){
+        return $this->belongsTo(Symptom::class);
     }
 }
