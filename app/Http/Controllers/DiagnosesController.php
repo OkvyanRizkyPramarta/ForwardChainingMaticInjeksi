@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diagnoses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -36,7 +37,7 @@ class DiagnosesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

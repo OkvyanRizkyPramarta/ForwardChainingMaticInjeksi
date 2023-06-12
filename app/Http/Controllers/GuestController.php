@@ -8,6 +8,8 @@ use App\Models\Sparepart;
 use App\Models\Article;
 use App\Models\Motorcycle;
 use App\Models\Diagnoses;
+use App\Models\history;
+use App\Models\HistoryDamage;
 use App\Models\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,23 +36,34 @@ class GuestController extends Controller
     public function processDiagnoses(Request $request)
     {
         // $validator = Validator::make($request->all(), [
-            // 'km' => 'required',
-            // 'rule_id' => 'required',
-            // 'motorcycle_id' => 'required',
+        // 'km' => 'required',
+        // 'rule_id' => 'required',
+        // 'motorcycle_id' => 'required',
         // ]);
 
         //Mencari Id Yang diinputkan
 
-        $rules = Rule::with('damage', 'symptom')->
-            whereIn('symptom_id', $request->get('symptom_id'))
-        ->get();
+        $rules = Rule::with('damage', 'symptom')->whereIn('symptom_id', $request->get('symptom_id'))
+            ->get();
 
         $mc = $request->input('motorcycle_id');
-        $temp_damage = $rules->pluck('damage');
+        $temp_damage = $rules->pluck('damage')->unique();
         $temp_km = $request->input('km');
-        $temp_motorcycle = Motorcycle::where('id','=',$mc)->get();
+        $temp_motorcycle = Motorcycle::where('id', '=', $mc)->first();
 
-        return view('guest.diagnosesresult',compact(['temp_damage','temp_km','temp_motorcycle']));
+        $history = history::create([
+            'nama_sepeda' => $temp_motorcycle->name,
+        ]);
+
+        foreach ($temp_damage as $value) {
+            $history_damage = HistoryDamage::create([
+                'history_id' => $history->id,
+                'damage' => $value->name,
+
+            ]);
+        }
+
+        return view('guest.diagnosesresult', compact(['temp_damage', 'temp_km', 'temp_motorcycle']));
 
         // //Mencari Id Yang diinputkan
         // $qry = DB::table('rules')->select('damage_id');
@@ -72,7 +85,7 @@ class GuestController extends Controller
 
         //     ['G001','G004','G007'],['G004','G007','G012'],
         //     ['G001','G007','G012'],['G001','G004','G012'],
-            
+
         //     ['G001','G004','G007','G012'],
 
         //     //K002
@@ -159,7 +172,7 @@ class GuestController extends Controller
     {
         $newsparepart = Sparepart::indexLimit();
 
-        return view('guest.sparepartdetail', compact('sparepart','newsparepart'));
+        return view('guest.sparepartdetail', compact('sparepart', 'newsparepart'));
     }
 
     public function article()
@@ -171,6 +184,11 @@ class GuestController extends Controller
     {
         $newarticle = Article::indexLimit();
 
-        return view('guest.articledetail', compact('article','newarticle'));
+        return view('guest.articledetail', compact('article', 'newarticle'));
+    }
+    public function history(){
+        $history=history::with('history_damage')->get();
+        //dd($history);
+        return view('guest.history',compact('history'));
     }
 }
