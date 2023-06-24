@@ -13,10 +13,10 @@ class CreateHistoryDamageTable extends Migration
      */
     public function up()
     {
-        Schema::create('history_damage', function (Blueprint $table) {
+        Schema::create('history_damages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('history_id');
-            $table->foreign('history_id')->references('id')->on('history');
+            $table->foreign('history_id')->references('id')->on('histories');
             $table->String('damage');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateHistoryDamageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('history_damage');
+        Schema::dropIfExists('history_damages');
     }
 }

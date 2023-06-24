@@ -28,6 +28,7 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', [GuestController::class, 'home'])->name('guest.index');
 Route::get('/diagnoses', [GuestController::class, 'diagnoses'])->name('guest.diagnoses');
 Route::get('/history', [GuestController::class, 'history'])->name('guest.history');
+Route::get('/chart', [GuestController::class, 'chart'])->name('guest.chart');
 Route::post('/diagnoses/proses', [GuestController::class, 'processDiagnoses'])->name('guest.diagnoses.store');
 // Route::get('/diagnoses/result', [GuestController::class, 'diagnosesResult'])->name('guest.diagnoses.result');
 // Route::get('/diagnoses/result/nothing', [GuestController::class, 'diagnosesNothing'])->name('guest.diagnoses.result.nothing');

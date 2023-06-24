@@ -134,19 +134,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($history as $val)
+                            @foreach($history as $h)
                             <tr>
-                                <td scope="row">{{$val->nama_sepeda}}</td>
+                                <td scope="row">{{$h->motorcycle->name}}</td>
 
                                 <td scope="row">
-                                    @foreach($val->history_damage as $damage)
+                                    @foreach($h->history_damages as $damage)
                                     <ul style="list-style-type:disc;">
                                     <li>{{$damage->damage}}</li>
                                     </ul>
                                     @endforeach
                                 </td>
                                 <td scope="row">
-                                    {{date('d-m-Y : h:m', strtotime($val->created_at));}}
+                                    {{date('d-m-Y : h:m', strtotime($h->created_at));}}
                                 </td>
                             </tr>
                             @endforeach

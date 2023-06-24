@@ -8,9 +8,10 @@ use App\Models\Sparepart;
 use App\Models\Article;
 use App\Models\Motorcycle;
 use App\Models\Diagnoses;
-use App\Models\history;
+use App\Models\History;
 use App\Models\HistoryDamage;
 use App\Models\Rule;
+use App\Models\Chart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -51,15 +52,21 @@ class GuestController extends Controller
         $temp_km = $request->input('km');
         $temp_motorcycle = Motorcycle::where('id', '=', $mc)->first();
 
-        $history = history::create([
-            'nama_sepeda' => $temp_motorcycle->name,
-        ]);
+        // $history = History::create([
+        //     'motorcycle_id' => $temp_motorcycle->id,
+        // ]);
+
+        $history = new History;
+        $motorcycle = new Motorcycle;
+        $motorcycle->id = $request->input('motorcycle_id');
+
+        $history->motorcycle()->associate($motorcycle);
+        $history->save();
 
         foreach ($temp_damage as $value) {
             $history_damage = HistoryDamage::create([
                 'history_id' => $history->id,
                 'damage' => $value->name,
-
             ]);
         }
 
@@ -186,9 +193,48 @@ class GuestController extends Controller
 
         return view('guest.articledetail', compact('article', 'newarticle'));
     }
+
     public function history(){
-        $history=history::with('history_damage')->get();
+        $history=History::with('history_damages')->get();
         //dd($history);
         return view('guest.history',compact('history'));
     }
+
+    public function chart(){
+
+        $motorcycle = Motorcycle::pluck('name');
+        // $chart = History::select('motorcycle_id')
+        // ->groupBy('motorcycle_id')
+        // ->pluck('motorcycle_id');
+
+        // $chart = History::get('motorcycle_id')->groupBy('motorcycle_id');
+
+        // $chart = History::where('motorcycle_id', '=', 1);
+
+        // $labels = $motorcycle;
+        // $data = $chart;
+        
+        // dd($data);
+        // return view('guest.chart', compact('labels','data'));
+        $groups = DB::table('histories')
+        ->select('motorcycle_id', DB::raw('count(*) as total'))
+        ->groupBy('motorcycle_id')
+        ->pluck('total', 'motorcycle_id')->all();
+
+        // Generate colours for the groups
+        for ($i=0; $i<=count($groups); $i++) {
+        $colours[] = '#354F8E';
+        }
+
+        // Prepare the data for returning with the view
+        $chart = new Chart;
+        $chart->labels = (array_keys($groups));
+        $chart->dataset = (array_values($groups));
+        $chart->colours = $colours;
+
+        return view('guest.chart', compact('chart'));
+        // dd($data);
+        //return view('guest.chart', compact('chartjs'));
+    }
+
 }

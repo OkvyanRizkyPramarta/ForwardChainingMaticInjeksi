@@ -18,4 +18,9 @@ class Motorcycle extends Model
     {
         return Motorcycle::all();
     }
+
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
 }

@@ -167,6 +167,7 @@ return [
          */
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
 
         /*
          * Application Service Providers...

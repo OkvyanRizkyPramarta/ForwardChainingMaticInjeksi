@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class HistoryDamage extends Model
 {
     use HasFactory;
-    protected $table = 'history_damage';
+    protected $table = 'history_damages';
     protected $guarded = [];
 
     public function history() {

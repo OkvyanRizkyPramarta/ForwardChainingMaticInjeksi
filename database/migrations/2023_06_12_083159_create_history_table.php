@@ -13,10 +13,12 @@ class CreateHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('history', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->String('nama_sepeda');
+            $table->unsignedBigInteger('motorcycle_id');
             $table->timestamps();
+
+            $table->foreign('motorcycle_id')->references('id')->on('motorcycles');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('history');
+        Schema::dropIfExists('histories');
     }
 }
