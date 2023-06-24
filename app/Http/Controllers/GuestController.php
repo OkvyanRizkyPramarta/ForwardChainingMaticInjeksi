@@ -216,10 +216,10 @@ class GuestController extends Controller
         
         // dd($data);
         // return view('guest.chart', compact('labels','data'));
-        $groups = DB::table('histories')
-        ->select('motorcycle_id', DB::raw('count(*) as total'))
-        ->groupBy('motorcycle_id')
-        ->pluck('total', 'motorcycle_id')->all();
+        $groups = DB::table('history')
+        ->select('nama_sepeda', DB::raw('count(*) as total'))
+        ->groupBy('nama_sepeda')
+        ->pluck('total', 'nama_sepeda')->all();
 
         // Generate colours for the groups
         for ($i=0; $i<=count($groups); $i++) {
