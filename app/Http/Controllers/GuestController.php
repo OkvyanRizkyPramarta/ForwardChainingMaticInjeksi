@@ -36,14 +36,8 @@ class GuestController extends Controller
 
     public function processDiagnoses(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        // 'km' => 'required',
-        // 'rule_id' => 'required',
-        // 'motorcycle_id' => 'required',
-        // ]);
 
         //Mencari Id Yang diinputkan
-
         $rules = Rule::with('damage', 'symptom')->whereIn('symptom_id', $request->get('symptom_id'))
             ->get();
 
@@ -51,10 +45,6 @@ class GuestController extends Controller
         $temp_damage = $rules->pluck('damage')->unique();
         $temp_km = $request->input('km');
         $temp_motorcycle = Motorcycle::where('id', '=', $mc)->first();
-
-        // $history = History::create([
-        //     'motorcycle_id' => $temp_motorcycle->id,
-        // ]);
 
         $history = new History;
         $motorcycle = new Motorcycle;
@@ -72,103 +62,7 @@ class GuestController extends Controller
 
         return view('guest.diagnosesresult', compact(['temp_damage', 'temp_km', 'temp_motorcycle']));
 
-        // //Mencari Id Yang diinputkan
-        // $qry = DB::table('rules')->select('damage_id');
-        // $rule_input = array();
-        // foreach ($request->except('_token','motorcycle_id','km') as $where) {
-        //     $qry->where($where,'=','1');
-        //     array_push($rule_input,$where);
-        // }
-        // $qry->whereRaw('1 = 1')->get();
-
-        // //Menentukan Rule
-        // $rule = [
-        //     // K001
-        //     ['G001'],['G004'],['G007'],['G012'],
-
-        //     ['G001','G004'],['G001','G007'],['G001','G012'],
-        //     ['G004','G007'],['G004','G012'],
-        //     ['G007','G012'],
-
-        //     ['G001','G004','G007'],['G004','G007','G012'],
-        //     ['G001','G007','G012'],['G001','G004','G012'],
-
-        //     ['G001','G004','G007','G012'],
-
-        //     //K002
-        //     ['G002'],['G005'],['G009'],['G016'],
-
-        //     ['G002','G005'],['G002','G009'],['G002','G016'],
-        //     ['G005','G009'],['G005','G016'],
-        //     ['G009','G016'],
-
-        //     ['G002','G005','G009'],['G005','G009','G016'],
-        //     ['G002','G009','G016'],['G002','G005','G016'],
-
-        //     ['G002','G005','G009','G016'],
-
-        //     // K003
-        //     ['G008','G012','G018'],
-
-        //     // K004
-        //     ['G019'],
-        //     ['G004','G006','G007','G012','G017','G019'],
-
-        //     // K005
-        //     ['G006','G010','G011','G012'],
-
-        //     // K006
-        //     ['G019'],
-        //     ['G019','G020'],
-
-        //     // K007
-        //     ['G019'],
-        //     ['G006','G012','G014','G017','G019'],
-
-        //     // K008
-        //     ['G003'],['G019'],['G020'],
-        //     ['G003','G019','G020'],
-
-        //     // K009
-        //     ['G003'],['G015'],['G019'],
-        //     ['G003','G015'],['G003','G019'],['G015','G019'],
-        //     ['G003','G015','G019'],
-        //     ['G003','G015','G019'],
-        // ];
-
-        // $status=false;
-
-        // //Mencocokan gejala yang di inputkan user dengan rule yang ada
-        // for($i=0; $i < sizeof($rule); $i++){
-        //     $result = ($rule_input==$rule[$i]);
-        //     if($result){
-        //         $status=true;
-        //     }
-        // }
-
-        // //Jika ditemukan akan menampilkan info dan solusi dari kerusakan
-        // if($status==true){
-        //     $id = $qry->value('id');
-        //     $mc = $request->input('motorcycle_id');
-        //     $temp_damage = Damage::where('id','=',$id)->get();
-        //     $temp_km = $request->input('km');
-        //     $temp_motorcycle = Motorcycle::where('id','=',$mc)->get();
-        //     return view('guest.diagnosesresult',compact(['temp_damage','temp_km','temp_motorcycle']));
-        // }else{
-        //     return view('guest.diagnosesnothing');
-        // }
-
     }
-
-    // public function diagnosesResult()
-    // {
-    //     return view('guest.diagnosesresult');
-    // }
-
-    // public function diagnosesNothing()
-    // {
-    //     return view('guest.diagnosesnothing');
-    // }
 
     public function sparepart()
     {
@@ -202,39 +96,24 @@ class GuestController extends Controller
 
     public function chart(){
 
-        $motorcycle = Motorcycle::pluck('name');
-        // $chart = History::select('motorcycle_id')
-        // ->groupBy('motorcycle_id')
-        // ->pluck('motorcycle_id');
-
-        // $chart = History::get('motorcycle_id')->groupBy('motorcycle_id');
-
-        // $chart = History::where('motorcycle_id', '=', 1);
-
-        // $labels = $motorcycle;
-        // $data = $chart;
-        
-        // dd($data);
-        // return view('guest.chart', compact('labels','data'));
         $groups = DB::table('histories')
-        ->select('motorcycle_id', DB::raw('count(*) as total'))
-        ->groupBy('motorcycle_id')
-        ->pluck('total', 'motorcycle_id')->all();
+        ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+        ->select('motorcycles.name', DB::raw('count(*) as total'))
+        ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+        ->pluck('total', 'name')
+        ->all();
 
-        // Generate colours for the groups
         for ($i=0; $i<=count($groups); $i++) {
         $colours[] = '#354F8E';
         }
 
-        // Prepare the data for returning with the view
+        // Menampilkan Data Nama Kendaraan, Jumlah, Warna Ke Dalam Chart
         $chart = new Chart;
         $chart->labels = (array_keys($groups));
         $chart->dataset = (array_values($groups));
         $chart->colours = $colours;
 
         return view('guest.chart', compact('chart'));
-        // dd($data);
-        //return view('guest.chart', compact('chartjs'));
     }
 
 }
