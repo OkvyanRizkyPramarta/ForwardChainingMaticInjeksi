@@ -9,6 +9,7 @@ use App\Http\Controllers\SymptomController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +28,9 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [GuestController::class, 'home'])->name('guest.index');
 Route::get('/diagnoses', [GuestController::class, 'diagnoses'])->name('guest.diagnoses');
-Route::get('/history', [GuestController::class, 'history'])->name('guest.history');
-Route::get('/chart', [GuestController::class, 'chart'])->name('guest.chart');
+// Route::get('/history', [GuestController::class, 'history'])->name('guest.history');
+// Route::get('/chart', [GuestController::class, 'chart'])->name('guest.chart');
 Route::post('/diagnoses/proses', [GuestController::class, 'processDiagnoses'])->name('guest.diagnoses.store');
-// Route::get('/diagnoses/result', [GuestController::class, 'diagnosesResult'])->name('guest.diagnoses.result');
-// Route::get('/diagnoses/result/nothing', [GuestController::class, 'diagnosesNothing'])->name('guest.diagnoses.result.nothing');
 Route::get('/sparepart', [GuestController::class, 'sparepart'])->name('guest.sparepart');
 Route::get('/sparepart/{sparepart}', [GuestController::class, 'sparepartdetail'])->name('guest.sparepart.detail');
 Route::get('/article', [GuestController::class, 'article'])->name('guest.article');
@@ -49,4 +48,5 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::resource('admin/rule', RuleController::class);
     Route::resource('admin/sparepart', SparepartController::class);
     Route::resource('admin/article', ArticleController::class);
+    Route::resource('admin/history', HistoryController::class);
 });

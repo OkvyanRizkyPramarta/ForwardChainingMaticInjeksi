@@ -42,13 +42,11 @@ class RuleController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required',
             'damage_id' => 'required',
             'symptom_id' => 'required',
         ]);
 
         $rule = new Rule;
-        $rule->id = $request->get('id');
 
         $damage = new Damage;
         $damage->id = $request->get('damage_id');
@@ -87,9 +85,11 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Rule $rule)
     {
-        //
+        $damage = Damage::all();
+        $symptom = Symptom::all();
+        return view('admin.rule.edit', compact('damage', 'symptom', 'rule'));
     }
 
     /**
@@ -99,9 +99,27 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rule $rule)
     {
-        //
+        $this->validate($request, [
+            'damage_id' => 'required',
+            'symptom_id' => 'required',
+        ]);
+
+        $rule = Rule::findOrFail($rule->id);
+        $damage = new Damage;
+        $symptom = new Symptom;
+
+        $rule->update([
+            'damage_id' => $request->damage_id,
+            'symptom_id' => $request->symptom_id,
+        ]);
+
+        $rule->damage()->associate($damage);
+        $rule->symptom()->associate($symptom);
+
+        Alert::toast('Data berhasil diedit.', 'success');
+        return redirect()->route('rule.index');
     }
 
     /**

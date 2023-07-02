@@ -125,32 +125,25 @@
                         <form action="{{ route('guest.diagnoses.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="row g-3">
-                                <!--<div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Choose Department</option>
-                                        <option value="1">Department 1</option>
-                                        <option value="2">Department 2</option>
-                                        <option value="3">Department 3</option>
-                                    </select>
-                                </div> -->
-                                <!-- <div class="col-12 col-sm-12">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Nama Anda" style="height: 55px;">
-                                </div> -->
                                 <div class="col-12 col-sm-12">
-                                  <select id="motorcycle" name="motorcycle_id" class="form-control bg-light border-0">
+                                  <p style="color:black;"><b>&nbsp;Nama Kendaraan</b>
+                                  </p>
+                                  <select id="motorcycle" name="motorcycle_id" class="form-control bg-light border-0" style="color:black;">
                                     @foreach($motorcycle as $m)
                                     <option value="{{ $m->id }}">{{ $m->name }}</option>
                                     @endforeach
                                   </select>
                                 </div> 
                                 <div class="col-12 col-sm-12">
-                                    <input type="number" name="km" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Kilo Meter Sepeda Motor" style="height: 55px;">
-                                </div> 
-                                <p>Centang data gejala sesuai dengan apa yang pengunjung 
-                                  alami untuk memperoleh informasi yang benar. 
+                                    <p style="color:black;"><b>&nbsp;KiloMeter Kendaraan</b>
+                                    </p>
+                                    <input type="number" name="km" class="form-control bg-light border-0" placeholder="Silahkan Masukkan Kilo Meter Sepeda Motor" style="height: 55px;color:black;">
+                                </div>
+                                <p style="color:black;"><b>&nbsp;Centang data gejala sesuai dengan apa yang pengunjung 
+                                  alami untuk memperoleh informasi yang benar. </b>
                                 </p>
                                 @foreach($symptom as $s)
-                                <div class="col-12 col-sm-12 checkbox-wrapper-13">
+                                <div class="col-12 col-sm-12 checkbox-wrapper-13" style="color:black;">
                                     <input id="c1-13" type="checkbox" value="{{ $s->id }}" name="symptom_id[]">
                                     <label for="c1-13">{{$s->code}} &nbsp; {{ $s->name }}</label>
                                 </div>

@@ -36,6 +36,15 @@ class GuestController extends Controller
 
     public function processDiagnoses(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'km' => 'required|max:5',
+            'symptom_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
 
         //Mencari Id Yang diinputkan
         $rules = Rule::with('damage', 'symptom')->whereIn('symptom_id', $request->get('symptom_id'))
@@ -94,26 +103,26 @@ class GuestController extends Controller
         return view('guest.history',compact('history'));
     }
 
-    public function chart(){
+    // public function chart(){
 
-        $groups = DB::table('histories')
-        ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
-        ->select('motorcycles.name', DB::raw('count(*) as total'))
-        ->groupBy('histories.motorcycle_id', 'motorcycles.name')
-        ->pluck('total', 'name')
-        ->all();
+    //     $groups = DB::table('histories')
+    //     ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+    //     ->select('motorcycles.name', DB::raw('count(*) as total'))
+    //     ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+    //     ->pluck('total', 'name')
+    //     ->all();
 
-        for ($i=0; $i<=count($groups); $i++) {
-        $colours[] = '#354F8E';
-        }
+    //     for ($i=0; $i<=count($groups); $i++) {
+    //     $colours[] = '#354F8E';
+    //     }
 
-        // Menampilkan Data Nama Kendaraan, Jumlah, Warna Ke Dalam Chart
-        $chart = new Chart;
-        $chart->labels = (array_keys($groups));
-        $chart->dataset = (array_values($groups));
-        $chart->colours = $colours;
+    //     // Menampilkan Data Nama Kendaraan, Jumlah, Warna Ke Dalam Chart
+    //     $chart = new Chart;
+    //     $chart->labels = (array_keys($groups));
+    //     $chart->dataset = (array_values($groups));
+    //     $chart->colours = $colours;
 
-        return view('guest.chart', compact('chart'));
-    }
+    //     return view('guest.chart', compact('chart'));
+    // }
 
 }

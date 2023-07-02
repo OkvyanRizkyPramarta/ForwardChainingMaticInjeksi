@@ -90,7 +90,7 @@
                     </div>
                     <div class="py-5">
                         <h5 style="padding-left:10%;text-align:left;">{!! Str::limit($ns->name, 40) !!}</h5>
-                        <a class="btn btn-dark py-1 px-3" style="color:white;margin-top:15px;" href="">Selengkapnya</a>
+                        <a class="btn btn-dark py-1 px-3" style="color:white;margin-top:15px;" href="{{ route('guest.sparepart.detail', $ns->id) }}">Selengkapnya</a>
                     </div>
                 </div>
                 @endforeach
@@ -114,12 +114,12 @@
                     <div class="bg-light rounded overflow-hidden">
                         <img class="img-fluid w-100" src="{{asset('storage/'.$na->image)}}" alt="">
                         <div class="p-4">
-                            <a class="h3 d-block mb-3" href="">{!! Str::limit($na->title, 40) !!}</a>
+                            <a class="h3 d-block mb-3" href="{{ route('guest.article.detail', $na->id) }}">{!! Str::limit($na->title, 40) !!}</a>
                             <p class="m-0">{!! Str::limit($na->description, 70) !!}</p>
                         </div>
                         <div class="d-flex justify-content-between border-top p-4">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
+                                <img class="rounded-circle me-2" src="{{ asset('guest/assets/img/admin.png') }}" width="25" height="25" alt="">
                                 <small>Admin</small>
                             </div>
                         </div>

@@ -81,9 +81,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        return view('admin.article.edit', compact('article'));
     }
 
     /**
@@ -93,9 +93,43 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'writer' => 'required',
+            'description' => 'required',
+        ]);
+
+        $article = Article::findOrFail($article->id);
+
+        if($request->file('image') == "") {
+
+            $article->update([
+                'title' => $request->title,
+                'writer' => $request->writer,
+                'description' => $request->description,
+            ]);
+
+        } else {
+
+            if ($article->image&&file_exists(storage_path('app/public/'.$article->image))) {
+                \Storage::delete('public/'.$article->image);
+            }
+
+        $image = $request->file('image');
+        $image->storeAs('public/', $image->hashName());
+
+        $article->update([
+            'title' => $request->title,
+            'writer' => $request->writer,
+            'description' => $request->description,
+            'image'     => $image->hashName()
+        ]);
+    }
+
+        Alert::toast('Data berhasil diubah.', 'success');
+        return redirect()->route('article.index');
     }
 
     /**
@@ -104,8 +138,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        Alert::toast('Data Berita / Informasi Berhasil Dihapus.', 'success');
+        return redirect()->back();
     }
 }

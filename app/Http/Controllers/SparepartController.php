@@ -83,9 +83,9 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sparepart $sparepart)
     {
-        //
+        return view('admin.sparepart.edit', compact('sparepart'));
     }
 
     /**
@@ -95,9 +95,46 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sparepart $sparepart)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'merk' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+        $sparepart = Sparepart::findOrFail($sparepart->id);
+
+        if($request->file('image') == "") {
+
+            $sparepart->update([
+                'name' => $request->name,
+                'merk' => $request->merk,
+                'description' => $request->description,
+                'price' => $request->price,
+            ]);
+
+        } else {
+
+            if ($sparepart->image&&file_exists(storage_path('app/public/'.$sparepart->image))) {
+                \Storage::delete('public/'.$sparepart->image);
+            }
+
+        $image = $request->file('image');
+        $image->storeAs('public/', $image->hashName());
+
+        $sparepart->update([
+            'name'     => $request->name,
+            'merk'     => $request->merk,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image'     => $image->hashName()
+        ]);
+    }
+
+        Alert::toast('Data berhasil diubah.', 'success');
+        return redirect()->route('sparepart.index');
     }
 
     /**

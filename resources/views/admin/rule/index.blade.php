@@ -34,7 +34,6 @@
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Kode Rules</th>
                                         <th>Nama Kerusakan</th>
                                         <th>Nama Gejala</th>
                                         <th width="30%">Action</th>
@@ -43,13 +42,12 @@
                                 <tbody>
                                 @foreach($rule as $r)
                                     <tr>
-                                        <td>{{ $r->id }}</td>
                                         <td>{{ $r->damage->name }}</td>
                                         <td>{{ $r->symptom->name }}</td>
                                         <td>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                <a href="" class="btn btn-warning notika-btn-warning">
+                                                <a href="{{ route('rule.edit', $r->id) }}" class="btn btn-warning notika-btn-warning">
                                                     Ganti Data 
                                                 </a>
                                             </div>
@@ -69,7 +67,6 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Kode Rules</th>
                                         <th>Nama Kerusakan</th>
                                         <th>Nama Gejala</th>
                                         <th>Action</th>

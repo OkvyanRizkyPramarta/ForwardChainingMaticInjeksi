@@ -36,7 +36,7 @@
                                 <h4>Kode Kerusakan</h4>
                                 <div class="form-group">
                                     <div class="nk-int-st">
-                                        <input type="text" name="id" class="form-control" placeholder="Contoh K001">
+                                        <input type="text" name="code" class="form-control" placeholder="Contoh K001">
                                     </div>
                                 </div>
                             </div>

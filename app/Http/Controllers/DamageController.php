@@ -38,7 +38,7 @@ class DamageController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required|max:8',
+            'code' => 'required|max:8',
             'name' => 'required|max:255'
         ]);
     
@@ -69,9 +69,9 @@ class DamageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Damage $damage)
     {
-        //
+        return view('admin.damage.edit', compact('damage'));
     }
 
     /**
@@ -81,9 +81,22 @@ class DamageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Damage $damage)
     {
-        //
+        $this->validate($request, [
+            'code' => 'required|max:8',
+            'name' => 'required|max:255'
+        ]);
+
+        $damage = Damage::findOrFail($damage->id);
+
+        $damage->update([
+            'code'     => $request->code,
+            'name'     => $request->name,
+        ]);
+
+        Alert::toast('Data berhasil diubah.', 'success');
+        return redirect()->route('damage.index');
     }
 
     /**

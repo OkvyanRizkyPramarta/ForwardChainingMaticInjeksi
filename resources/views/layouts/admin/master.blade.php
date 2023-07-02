@@ -103,6 +103,8 @@
                                         </li>
                                         <li><a href="{{ route('article.index') }}">Data Berita / Informasi</a>
                                         </li>
+                                        <li><a href="{{ route('history.index') }}">Data History Diagnosis</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Informasi Akun</a>
@@ -146,6 +148,8 @@
                                 <li><a href="{{ route('sparepart.index') }}">Data Spare Part</a>
                                 </li>
                                 <li><a href="{{ route('article.index') }}">Data Berita / Informasi</a>
+                                </li>
+                                <li><a href="{{ route('history.index') }}">Data History Diagnosis</a>
                                 </li>
                             </ul>
                         </div>

@@ -53,7 +53,7 @@
                                         <td>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                <a href="" class="btn btn-warning notika-btn-warning">
+                                                <a href="{{ route('article.edit', $a->id) }}" class="btn btn-warning notika-btn-warning">
                                                     Ganti Data 
                                                 </a>
                                             </div>

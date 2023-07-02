@@ -11,9 +11,9 @@
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="breadcomb-wp">
 									<div class="">
-                                        <h3>Buat Data Baru Gejala</h3>
+                                        <h3>Ubah Data Kerusakan</h3>
                                         <button class="btn btn-default btn-icon-notika" style="margin-top:5%; width:100%; background-color:#354F8E;">
-                                            <a href="{{ route('symptom.index') }}" style="color:white;"> <i class="notika-icon notika-left-arrow"></i> Kembali </a>
+                                            <a href="{{ route('damage.index') }}" style="color:white;"> <i class="notika-icon notika-left-arrow"></i> Kembali </a>
                                         </button>
 									</div>
 								</div>
@@ -30,26 +30,27 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-element-list">
-                        <form action="{{ route('symptom.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('damage.update', $damage->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                             <div class="basic-tb-hd">
-                                <h4>Kode Gejala</h4>
+                                <h4>Kode Kerusakan</h4>
                                 <div class="form-group">
                                     <div class="nk-int-st">
-                                        <input type="text" name="code" class="form-control" placeholder="Contoh G001">
+                                        <input type="text" name="code" class="form-control" value="{{ $damage->code }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="basic-tb-hd">
-                                <h4>Nama Gejala</h4>
+                                <h4>Nama Kerusakan</h4>
                                 <div class="form-group">
                                     <div class="nk-int-st">
-                                        <input type="text" name="name" class="form-control" placeholder="Contoh Motor Sulit Untuk Dinyalakan">
+                                        <input type="text" name="name" class="form-control" value="{{ $damage->name }}">
                                     </div>
                                 </div>
                             </div>
                             <button class="btn btn-default btn-icon-notika" style="margin-top:5%; width:100%; background-color:#354F8E; color:white;">
-                            Buat Data Baru <i class="notika-icon notika-right-arrow"></i> 
+                            Ubah Data <i class="notika-icon notika-right-arrow"></i> 
                             </button>
                         </form>
                     </div>

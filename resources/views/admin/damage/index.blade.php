@@ -42,12 +42,12 @@
                                 <tbody>
                                 @foreach($damage as $d)
                                     <tr>
-                                        <td>{{ $d->id }}</td>
+                                        <td>{{ $d->code }}</td>
                                         <td>{{ $d->name }}</td>
                                         <td>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                <a href="" class="btn btn-warning notika-btn-warning">
+                                                <a href="{{ route('damage.edit', $d->id) }}" class="btn btn-warning notika-btn-warning">
                                                     Ganti Data 
                                                 </a>
                                             </div>

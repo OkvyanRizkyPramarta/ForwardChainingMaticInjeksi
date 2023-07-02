@@ -32,9 +32,27 @@ function change() {
     }
 }
 </script>
+<style>
+/* Penting */
+.input-group-prepend,
+.input-group-append {
+  display: flex;
+}
+
+.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+</style>
 @section('content')
 <main class="login-form">
-    <div class="cotainer">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card" style="margin-top:100px;margin-bottom:100px;">
@@ -52,7 +70,7 @@ function change() {
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
                                 <div class="input-group">
-                                    <input type="password" id="pass" class="form-control" name="password">
+                                    <input type="password" id="pass" height="1em" class="form-control" name="password" required autofocus>
                                     <div class="input-group-append">
                 
                                         <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->
@@ -69,18 +87,8 @@ function change() {
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Signin</button>
-                            </div>
-                            <div class="text-center" style="margin-top:20px;">
-                                <p>If you don't have an account, you can register <a href="" target="_blank" rel="noopener noreferrer">here</a></p>
+                            <div class="d-grid mx-auto" style="margin-top:30px;margin-bottom:20px;">
+                                <button type="submit" class="btn btn-dark btn-block">Login</button>
                             </div>
                         </form>
                     </div>

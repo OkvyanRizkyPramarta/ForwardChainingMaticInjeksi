@@ -38,7 +38,7 @@ class SymptomController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required|max:8',
+            'code' => 'required|max:8',
             'name' => 'required|max:255'
         ]);
     
@@ -69,9 +69,9 @@ class SymptomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Symptom $symptom)
     {
-        //
+        return view('admin.symptom.edit', compact('symptom'));
     }
 
     /**
@@ -81,9 +81,22 @@ class SymptomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Symptom $symptom)
     {
-        //
+        $this->validate($request, [
+            'code' => 'required|max:8',
+            'name' => 'required|max:255'
+        ]);
+
+        $symptom = Symptom::findOrFail($symptom->id);
+
+        $symptom->update([
+            'code'     => $request->code,
+            'name'     => $request->name,
+        ]);
+
+        Alert::toast('Data berhasil diubah.', 'success');
+        return redirect()->route('symptom.index');
     }
 
     /**
