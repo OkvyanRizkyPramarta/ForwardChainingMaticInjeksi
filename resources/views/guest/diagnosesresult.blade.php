@@ -26,7 +26,7 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                   
                     <h5 class="text-white mb-5" style="text-align:justify;">
-                        Jenis Motor : {{ $temp_motorcycle->name }}
+                        Nama Kendaraan : {{ $temp_motorcycle->name }}
                     </h5>
                     <h5 class="text-white mb-5" style="text-align:justify;">
                         Kerusakan : </br>

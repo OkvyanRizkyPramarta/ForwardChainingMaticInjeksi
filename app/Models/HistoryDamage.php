@@ -14,4 +14,9 @@ class HistoryDamage extends Model
     public function history() {
         return $this->belongsTo(history::class);
     }
+
+    public function motorcycle()
+    {
+        return $this->belongsTo(Motorcycle::class);
+    }
 }

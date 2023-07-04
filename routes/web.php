@@ -28,7 +28,6 @@ use App\Http\Controllers\HistoryController;
 
 Route::get('/', [GuestController::class, 'home'])->name('guest.index');
 Route::get('/diagnoses', [GuestController::class, 'diagnoses'])->name('guest.diagnoses');
-// Route::get('/history', [GuestController::class, 'history'])->name('guest.history');
 // Route::get('/chart', [GuestController::class, 'chart'])->name('guest.chart');
 Route::post('/diagnoses/proses', [GuestController::class, 'processDiagnoses'])->name('guest.diagnoses.store');
 Route::get('/sparepart', [GuestController::class, 'sparepart'])->name('guest.sparepart');
@@ -49,4 +48,5 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::resource('admin/sparepart', SparepartController::class);
     Route::resource('admin/article', ArticleController::class);
     Route::resource('admin/history', HistoryController::class);
+    Route::get('history/pdf', [HistoryController::class, 'createPDF'])->name('create.pdf');
 });

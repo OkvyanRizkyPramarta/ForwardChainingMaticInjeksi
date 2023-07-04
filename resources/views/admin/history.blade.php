@@ -12,6 +12,9 @@
 								<div class="breadcomb-wp">
 									<div class="breadcomb-ctn">
                                         <h3>Tabel Data History Diagnosis</h3>
+                                        <button class="btn btn-default btn-icon-notika" style="margin-top:5%; width:100%; background-color:#354F8E; ">
+                                            <a href="{{ route('create.pdf') }}" style="color:white;"> Cetak Data PDF  <i class="notika-icon notika-up-arrow"></i><a>
+                                        </button>
 									</div>
 								</div>
 							</div>
@@ -37,7 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($history as $h)
+                                @foreach($pdfData as $h)
                                     <tr>
                                         <td>{{$h->motorcycle->name}}</td>
                                         <td>
