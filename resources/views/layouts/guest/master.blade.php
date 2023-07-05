@@ -49,6 +49,9 @@
                         <a href="{{ route('guest.diagnoses') }}" class="nav-item nav-link" style="color:white;">
                             Diagnosa
                         </a>
+                        <a href="{{ route('guest.chart') }}" class="nav-item nav-link" style="color:white;">
+                            Statistik Kerusakan
+                        </a>
                         <a href="{{ route('guest.sparepart') }}" class="nav-item nav-link" style="color:white;">
                             Spart Parts
                         </a>

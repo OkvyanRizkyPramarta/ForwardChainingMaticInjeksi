@@ -28,7 +28,7 @@ use App\Http\Controllers\HistoryController;
 
 Route::get('/', [GuestController::class, 'home'])->name('guest.index');
 Route::get('/diagnoses', [GuestController::class, 'diagnoses'])->name('guest.diagnoses');
-// Route::get('/chart', [GuestController::class, 'chart'])->name('guest.chart');
+Route::get('/chart', [GuestController::class, 'chartDamage'])->name('guest.chart');
 Route::post('/diagnoses/proses', [GuestController::class, 'processDiagnoses'])->name('guest.diagnoses.store');
 Route::get('/sparepart', [GuestController::class, 'sparepart'])->name('guest.sparepart');
 Route::get('/sparepart/{sparepart}', [GuestController::class, 'sparepartdetail'])->name('guest.sparepart.detail');

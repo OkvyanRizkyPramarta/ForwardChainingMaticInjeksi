@@ -103,7 +103,7 @@ class GuestController extends Controller
         return view('guest.history',compact('history'));
     }
 
-    // public function chart(){
+    // public function chartDamage(){
 
     //     $groups = DB::table('histories')
     //     ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
@@ -124,5 +124,240 @@ class GuestController extends Controller
 
     //     return view('guest.chart', compact('chart'));
     // }
+
+    // public function chartBusi() {
+
+    //     $groups = DB::table('history_damages')
+    //     ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+    //     ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+    //     ->select('motorcycles.name', DB::raw('count(*) as total'))
+    //     ->where('history_damages.damage', '=', 'busi') // Filter by "busi" damage
+    //     ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+    //     ->pluck('total', 'name')
+    //     ->all();
+
+    //     for ($i=0; $i<=count($groups); $i++) {
+    //     $colours[] = '#354F8E';
+    //     }
+
+    //     // Menampilkan Data Nama Kendaraan, Jumlah, Warna Ke Dalam Chart
+    //     $chart = new Chart;
+    //     $chart->labels = (array_keys($groups));
+    //     $chart->dataset = (array_values($groups));
+    //     $chart->colours = $colours;
+
+    //     return view('guest.chart', compact('chart'));
+    // }
+
+    public function chartDamage()
+    {
+        $damageGroups = DB::table('histories')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $busiGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'Busi')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+        
+        $ecuGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'ECU')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $filterFuelPumpGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'Filter Fuel Pump')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $filterUdaraGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'Filter Udara')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $injektorGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'Injektor')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $kampasKoplingGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'Kampas Kopling')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $pistonGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'Piston')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $rollerGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'roller')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $vbeltGroups = DB::table('history_damages')
+            ->join('histories', 'history_damages.history_id', '=', 'histories.id')
+            ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
+            ->select('motorcycles.name', DB::raw('count(*) as total'))
+            ->where('history_damages.damage', '=', 'V - Belt')
+            ->groupBy('histories.motorcycle_id', 'motorcycles.name')
+            ->pluck('total', 'name')
+            ->all();
+
+        $damageColours = [];
+        $busiColours = [];
+        $ecuColours = [];
+        $filterFuelPumpColours = [];
+        $filterUdaraColours = [];
+        $injektorColours = [];
+        $kampasKoplingColours = [];
+        $pistonColours = [];
+        $rollerColours = [];
+        $vbeltColours = [];
+
+        for ($i = 0; $i < count($damageGroups); $i++) {
+            $damageColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($busiGroups); $i++) {
+            $busiColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($ecuGroups); $i++) {
+            $ecuColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($filterFuelPumpGroups); $i++) {
+            $filterFuelPumpColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($filterUdaraGroups); $i++) {
+            $filterUdaraColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($injektorGroups); $i++) {
+            $injektorColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($kampasKoplingGroups); $i++) {
+            $kampasKoplingColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($pistonGroups); $i++) {
+            $pistonColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($rollerGroups); $i++) {
+            $rollerColours[] = '#354F8E';
+        }
+
+        for ($i = 0; $i < count($vbeltGroups); $i++) {
+            $vbeltColours[] = '#354F8E';
+        }
+
+        // Membuat Data Chart untuk Damage
+        $damageChart = new Chart;
+        $damageChart->labels = array_keys($damageGroups);
+        $damageChart->dataset = array_values($damageGroups);
+        $damageChart->colours = $damageColours;
+
+        // Membuat Data Chart untuk Busi
+        $busiChart = new Chart;
+        $busiChart->labels = array_keys($busiGroups);
+        $busiChart->dataset = array_values($busiGroups);
+        $busiChart->colours = $busiColours;
+
+        // Membuat Data Chart untuk ECU
+        $ecuChart = new Chart;
+        $ecuChart->labels = array_keys($ecuGroups);
+        $ecuChart->dataset = array_values($ecuGroups);
+        $ecuChart->colours = $ecuColours;
+
+        // Membuat Data Chart untuk Filter Fuel Pump
+        $filterFuelPumpChart = new Chart;
+        $filterFuelPumpChart->labels = array_keys($filterFuelPumpGroups);
+        $filterFuelPumpChart->dataset = array_values($filterFuelPumpGroups);
+        $filterFuelPumpChart->colours = $filterFuelPumpColours;
+
+        // Membuat Data Chart untuk Filter Udara
+        $filterUdaraChart = new Chart;
+        $filterUdaraChart->labels = array_keys($filterUdaraGroups);
+        $filterUdaraChart->dataset = array_values($filterUdaraGroups);
+        $filterUdaraChart->colours = $filterUdaraColours;
+
+        // Membuat Data Chart untuk Injektor
+        $injektorChart = new Chart;
+        $injektorChart->labels = array_keys($injektorGroups);
+        $injektorChart->dataset = array_values($injektorGroups);
+        $injektorChart->colours = $injektorColours;
+
+        // Membuat Data Chart untuk Kampas Kopling
+        $kampasKoplingChart = new Chart;
+        $kampasKoplingChart->labels = array_keys($kampasKoplingGroups);
+        $kampasKoplingChart->dataset = array_values($kampasKoplingGroups);
+        $kampasKoplingChart->colours = $kampasKoplingColours;
+
+        // Membuat Data Chart untuk Piston
+        $pistonChart = new Chart;
+        $pistonChart->labels = array_keys($pistonGroups);
+        $pistonChart->dataset = array_values($pistonGroups);
+        $pistonChart->colours = $pistonColours;
+
+        // Membuat Data Chart untuk Roller
+        $rollerChart = new Chart;
+        $rollerChart->labels = array_keys($rollerGroups);
+        $rollerChart->dataset = array_values($rollerGroups);
+        $rollerChart->colours = $rollerColours;
+
+        // Membuat Data Chart untuk V - Belt
+        $vbeltChart = new Chart;
+        $vbeltChart->labels = array_keys($vbeltGroups);
+        $vbeltChart->dataset = array_values($vbeltGroups);
+        $vbeltChart->colours = $vbeltColours;
+
+        return view('guest.chart', compact(
+            'damageChart', 'busiChart', 
+            'ecuChart', 'filterFuelPumpChart',
+            'filterUdaraChart', 'injektorChart', 
+            'kampasKoplingChart', 'pistonChart', 
+            'rollerChart', 'vbeltChart'
+        ));
+    }
+
 
 }
