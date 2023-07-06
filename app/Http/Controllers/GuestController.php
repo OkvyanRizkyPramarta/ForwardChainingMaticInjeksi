@@ -103,52 +103,6 @@ class GuestController extends Controller
         return view('guest.history',compact('history'));
     }
 
-    // public function chartDamage(){
-
-    //     $groups = DB::table('histories')
-    //     ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
-    //     ->select('motorcycles.name', DB::raw('count(*) as total'))
-    //     ->groupBy('histories.motorcycle_id', 'motorcycles.name')
-    //     ->pluck('total', 'name')
-    //     ->all();
-
-    //     for ($i=0; $i<=count($groups); $i++) {
-    //     $colours[] = '#354F8E';
-    //     }
-
-    //     // Menampilkan Data Nama Kendaraan, Jumlah, Warna Ke Dalam Chart
-    //     $chart = new Chart;
-    //     $chart->labels = (array_keys($groups));
-    //     $chart->dataset = (array_values($groups));
-    //     $chart->colours = $colours;
-
-    //     return view('guest.chart', compact('chart'));
-    // }
-
-    // public function chartBusi() {
-
-    //     $groups = DB::table('history_damages')
-    //     ->join('histories', 'history_damages.history_id', '=', 'histories.id')
-    //     ->join('motorcycles', 'histories.motorcycle_id', '=', 'motorcycles.id')
-    //     ->select('motorcycles.name', DB::raw('count(*) as total'))
-    //     ->where('history_damages.damage', '=', 'busi') // Filter by "busi" damage
-    //     ->groupBy('histories.motorcycle_id', 'motorcycles.name')
-    //     ->pluck('total', 'name')
-    //     ->all();
-
-    //     for ($i=0; $i<=count($groups); $i++) {
-    //     $colours[] = '#354F8E';
-    //     }
-
-    //     // Menampilkan Data Nama Kendaraan, Jumlah, Warna Ke Dalam Chart
-    //     $chart = new Chart;
-    //     $chart->labels = (array_keys($groups));
-    //     $chart->dataset = (array_values($groups));
-    //     $chart->colours = $colours;
-
-    //     return view('guest.chart', compact('chart'));
-    // }
-
     public function chartDamage()
     {
         $damageGroups = DB::table('histories')

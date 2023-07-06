@@ -19,17 +19,17 @@ class SymptomSeeder extends Seeder
         Symptom::insert([
             [
                 'code' => 'G001',
-                'name' => 'Akibat Terkena Air',
+                'name' => 'Perangkat Elektronik Kendaraan Tidak Bekerja Semestinya Seperti Klakson Mati, Lampu Berkedip, dll.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'G002',
-                'name' => 'Arus Listrik yang Bocor',
+                'name' => 'Kendaraan Menjadi Bergetar Dan Tidak Seimbang',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'G003',
-                'name' => 'Aus (Susut karena tergesek)',
+                'name' => 'Kecepatan Tidak Optional',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -49,7 +49,7 @@ class SymptomSeeder extends Seeder
             ],
             [
                 'code' => 'G007',
-                'name' => 'Kotor Pada Komponen',
+                'name' => 'Mesin Menjadi Mudah Panas',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -84,12 +84,12 @@ class SymptomSeeder extends Seeder
             ],
             [
                 'code' => 'G014',
-                'name' => 'Oli Sudah Kering',
+                'name' => 'Oli Menjadi Lebih Boros Dan Lebih Sering Kering',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'G015',
-                'name' => 'Rusak, Patah Atau Pecah Pada Komponen',
+                'name' => 'Mesin Dalam Kondisi Menyala Tetapi Kendaraan Tidak Dapat Berjalan',
                 'created_at' => Carbon::now(),
             ],
             [

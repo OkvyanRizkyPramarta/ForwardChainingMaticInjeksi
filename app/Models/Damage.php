@@ -12,7 +12,8 @@ class Damage extends Model
     
     protected $fillable = [
         'code',
-        'name'
+        'name',
+        'solution'
     ];
     
     public static function index()

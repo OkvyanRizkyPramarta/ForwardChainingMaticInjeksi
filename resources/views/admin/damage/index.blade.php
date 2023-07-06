@@ -36,6 +36,7 @@
                                     <tr>
                                         <th>Kode Kerusakan</th>
                                         <th>Nama Kerusakan</th>
+                                        <th>Saran Atau Solusi</th>
                                         <th width="30%">Action</th>
                                     </tr>
                                 </thead>
@@ -44,6 +45,7 @@
                                     <tr>
                                         <td>{{ $d->code }}</td>
                                         <td>{{ $d->name }}</td>
+                                        <td>{!! $d->solution !!}</td>
                                         <td>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -69,6 +71,7 @@
                                     <tr>
                                         <th>Kode Kerusakan</th>
                                         <th>Nama Kerusakan</th>
+                                        <th>Saran Atau Solusi</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

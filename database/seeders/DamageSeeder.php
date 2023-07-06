@@ -20,81 +20,78 @@ class DamageSeeder extends Seeder
             [
                 'code' => 'K001 ',
                 'name' => 'Busi',
-                // 'description' => 'Busi merupakan komponen penting dalam sistem pengapian di motor. 
-                // Tanpa busi, motor tidak dapat di hidupkan mesinnya. Busi motor memiliki fungsi 
-                // untuk meneruskan tegangan listrik yang disalurkan oleh ignition coil menjadi 
-                // percikan api yang akan membakar campuran udara dan bensin di ruang bakar. Ketika 
-                // busi motor mengalami masalah, maka dapat mengakibatkan sistem pengapian tidak 
-                // bekerja secara sempurna. Untuk itu perlunya selalu merawat kondisi busi agar 
-                // berfungsi secara optimal.',
+                'solution' => 
+                'Menggunakan bahan bakar yang berkualitas baik karena berpengaruh terhadap busi.
+                Menggunakan busi yang bersih dan tidak kotor.
+                Menggunakan model busi yang sesuai dengan kendaraan matic injeksi atau original.
+                Melakukan pengecekan pada sistem pengapian busi.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K002',
                 'name' => 'ECU',
-                // 'description' => 'Engine Control Unit (ECU) merupakan seperangkat alat yang bekerja 
-                // sebagai sistem pengatur dan pengontrol pada motor bermesin. Perangkat ini dapat 
-                // menjadi pusat dari segala kegiatan yang terjadi pada sebuah motor karena komponen 
-                // satu ini terhubung dengan banyak perangkat. Part ini dapat ditemukan pada motor injeksi.',
+                'solution' => 
+                'Pastikan semua koneksi dan kabel yang terhubung ke ECU terpasang dengan baik dan tidak ada yang longgar atau rusak.
+                Mengganti komponen pada ECU yang sudah rusak dengan yang baru dan spesifikasi yang sama.
+                Melakukan pengecekan pada ECU terhadap sensor-sensor seperti sensor suhu mesin, dll.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K003',
                 'name' => 'Filter Fuel Pump',
-                // 'description' => 'Filter fuel pump berfungsi menyaring kotoran dari bahan bakar sebelum 
-                // disalurkan oleh fuel pump menuju injektor.',
+                'solution' => 
+                'Periksa kabel-kabel dan konektor yang terhubung ke fuel pump dan sistem terkait dengan bahan bakar.
+                Mengganti kabel-kabel dan konektor yang terhubung ke fuel pump dan sistem terkait.
+                Membersihkan atau mengganti fuel pump secara keseluruhan.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K004',
                 'name' => 'Filter Udara',
-                // 'description' => 'Filter udara memiliki fungsi untuk menyaring udara yang masuk ke dalam 
-                // ruang bakar. Udara yang digunakan dalam proses pembakaran harus benar-benar bersih 
-                // sehingga tidak menyumbat sistem injeksi atau karburator. Filter udara juga berfungsi 
-                // untuk menjaga ruang bakar tetap bersih, Menghindari kemunculan karat akibat udara atau air, 
-                // Menjaga kondisi motor tetap bertenaga.',
+                'solution' => 
+                'Membersihkan filter udara yang terlihat kotor dengan lembut agar tidak merusak struktur atau elemen filter.
+                Mengganti komponen atau filter udara dengan yang baru jika sudah sangat kotor atau rusak.
+                Memeriksa selang ventilasi udara dan pastikan tidak ada kerusakan atau penyumbatan yang dapat mengganggu aliran udara yang masuk.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K005',
                 'name' => 'Injektor',
-                // 'description' => 'Injektor berfungsi untuk mengabutkan bahan bakar dan menyemprotkan 
-                // bahan bakar tersebut ke saluran masuk (intake manifold), pada umumnya sebelum katup 
-                // masuk. Jumlah bahan bakar yang diinjeksikan tergantung dari tekanan bahan bakar, 
-                // besarnya lubang pada injektor, dan lamanya injektor tersebut membuka.',
+                'solution' => 
+                'Membersihkan injektor dengan cara menggunakan cairan atau produk khusus untuk membersihkan injektor
+                Jika terdapat kebocoran dapat mengganti seal injector dengan yang baru untuk memastikan kekencangan dan kebocoran yang minimal.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K006',
                 'name' => 'Kampas Kopling',
-                // 'description' => 'Motor matik menggunakan kampas kopling ganda yang berfungsi untuk 
-                // menyalurkan tenaga dari mesin menuju roda belakang.',
+                'solution' => 
+                'Mengganti kampas kopling jika kampas kopling sudah dalam kondisi yang sangat buruk atau tidak dapat diperbaiki.
+                Membersihkan kampas kopling terlihat kotor atau terdapat kotoran yang menempel.
+                Rutin membersihkan / service bagian cvt.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K007',
                 'name' => 'Piston',
-                // 'description' => 'Piston memiliki peran yang sangat penting dalam proses pembakaran 
-                // mesin kendaraan. Fungsi piston di antaranya mengatur volume silinder, menghisap 
-                // udara ke dalam silinder, mengompres campuran udara dan bahan bakar, mengubah daya 
-                // ekspansi pembakaran menjadi energi mekanik, serta mendorong gas sisa pembakaran keluar.',
+                'solution' => 
+                'Rutin Mengganti oli.
+                Melakukan pengecekkan suhu mesin untuk memastikan aliran udara dan pendinginan yang optimal.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K008',
                 'name' => 'Roller',
-                // 'description' => 'Fungsi roller pada motor matic adalah menciptakan tekanan pada pulley 
-                // agar dapat bergerak. Roller juga berfungsi mengatur akselerasi pada sepeda motor. Roller 
-                // bawaan dari pabrik akan bekerja mengatur akselerasi motor agar tetap seimbang. ',
+                'solution' => 
+                'Memeriksa kondisi roller untuk memastikan apakah roller sudah terkikis atau aus karena usia atau faktor lainnya.
+                Mengganti atau menggunakan roller yang sesuai dengan kendaraan matic injeksi atau original.',
                 'created_at' => Carbon::now(),
             ],
             [
                 'code' => 'K009',
                 'name' => 'V - Belt',
-                // 'description' => 'V-belt merupakan salah satu komponen penting pada motor dengan sistem 
-                // transmisi otomatis. V-belt punya peran seperti rantai motor yang menghubungkan gir di 
-                // crankcase dengan gir di roda belakang. Pada motor matik, v-belt menjadi penghubung puli 
-                // depan dan puli belakang.',
+                'solution' => 
+                'Mengganti atau menggunakan model v - belt yang sesuai dengan kendaraan matic injeksi atau original.',
                 'created_at' => Carbon::now(),
             ],
         ]);

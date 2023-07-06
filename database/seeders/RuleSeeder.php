@@ -20,17 +20,12 @@ class RuleSeeder extends Seeder
 
             [
                 'damage_id' => '1',
-                'symptom_id' => '1',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'damage_id' => '1',
                 'symptom_id' => '4',
                 'created_at' => Carbon::now(),
             ],
             [
                 'damage_id' => '1',
-                'symptom_id' => '7',
+                'symptom_id' => '6',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -39,8 +34,13 @@ class RuleSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
             [
+                'damage_id' => '1',
+                'symptom_id' => '19',
+                'created_at' => Carbon::now(),
+            ],
+            [
                 'damage_id' => '2',
-                'symptom_id' => '2',
+                'symptom_id' => '1',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -55,7 +55,17 @@ class RuleSeeder extends Seeder
             ],
             [
                 'damage_id' => '2',
+                'symptom_id' => '12',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'damage_id' => '2',
                 'symptom_id' => '16',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'damage_id' => '3',
+                'symptom_id' => '4',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -80,11 +90,6 @@ class RuleSeeder extends Seeder
             ],
             [
                 'damage_id' => '4',
-                'symptom_id' => '6',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'damage_id' => '4',
                 'symptom_id' => '7',
                 'created_at' => Carbon::now(),
             ],
@@ -105,7 +110,7 @@ class RuleSeeder extends Seeder
             ],
             [
                 'damage_id' => '5',
-                'symptom_id' => '6',
+                'symptom_id' => '4',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -129,13 +134,8 @@ class RuleSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
             [
-                'damage_id' => '5',
-                'symptom_id' => '17',
-                'created_at' => Carbon::now(),
-            ],
-            [
                 'damage_id' => '6',
-                'symptom_id' => '3',
+                'symptom_id' => '15',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -175,6 +175,11 @@ class RuleSeeder extends Seeder
             ],
             [
                 'damage_id' => '8',
+                'symptom_id' => '2',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'damage_id' => '8',
                 'symptom_id' => '3',
                 'created_at' => Carbon::now(),
             ],
@@ -201,6 +206,11 @@ class RuleSeeder extends Seeder
             [
                 'damage_id' => '9',
                 'symptom_id' => '19',
+                'created_at' => Carbon::now(),
+            ],
+            [
+                'damage_id' => '9',
+                'symptom_id' => '20',
                 'created_at' => Carbon::now(),
             ],
             

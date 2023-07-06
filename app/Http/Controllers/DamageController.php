@@ -39,7 +39,8 @@ class DamageController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'code' => 'required|max:8',
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'solution' => 'required'
         ]);
     
         if ($validator->fails()) {
@@ -85,7 +86,8 @@ class DamageController extends Controller
     {
         $this->validate($request, [
             'code' => 'required|max:8',
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'solution' => 'required'
         ]);
 
         $damage = Damage::findOrFail($damage->id);
@@ -93,6 +95,7 @@ class DamageController extends Controller
         $damage->update([
             'code'     => $request->code,
             'name'     => $request->name,
+            'solution'     => $request->solution,
         ]);
 
         Alert::toast('Data berhasil diubah.', 'success');

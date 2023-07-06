@@ -1,5 +1,12 @@
 @extends('layouts.admin.master')
 
+<!-- include libraries(jQuery, bootstrap) -->
+    
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 @section('content')
 
     <!-- Breadcomb area Start-->
@@ -48,6 +55,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="basic-tb-hd">
+                                <h4>Saran Atau Solusi</h4>
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <textarea name="solution" class="form-control" id="summernote"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn btn-default btn-icon-notika" style="margin-top:5%; width:100%; background-color:#354F8E; color:white;">
                             Buat Data Baru <i class="notika-icon notika-right-arrow"></i> 
                             </button>
@@ -59,5 +74,14 @@
         </div>
     </div>
     <!-- Form Element area End-->
+
+<!-- summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script type="text/javascript">
+    $('#summernote').summernote({
+        height: 150
+    });
+</script>
 
 @endsection

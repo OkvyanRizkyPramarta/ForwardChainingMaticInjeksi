@@ -37,6 +37,12 @@
                     <h5 class="text-white mb-5" style="text-align:justify;">
                         Kilo Meter : {{ $temp_km }}
                     </h5>
+                    <h5 class="text-white mb-5" style="text-align:justify;">
+                        Saran : </br>
+                        @foreach ($temp_damage as $td)
+                            {!! $td->solution !!} </br>
+                        @endforeach
+                    </h5>
                 </div>
                 <a class="btn rounded-pill py-3 px-5 me-3" 
                     style="margin-top:45px;background-color:white;color:#354F8E;" 
