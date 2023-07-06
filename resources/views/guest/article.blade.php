@@ -20,11 +20,11 @@
             <div class="row g-5">
             @foreach($article as $a)
                 <div class="col-xl-4 col-lg-6">
-                    <div class="bg-light rounded overflow-hidden">
+                    <div class="bg-light rounded overflow-hidden text-center">
                         <img class="img-fluid w-100" src="{{asset('storage/'.$a->image)}}" alt="">
                         <div class="p-4">
-                            <a class="h3 d-block mb-3" href="{{ route('guest.article.detail', $a->id) }}">{!! Str::limit($a->title, 50) !!} </a>
-                            <p class="m-0">{!! Str::limit($a->description, 100) !!} </p> 
+                            <h5>{{ $a->title }}</h5>
+                            <a class="btn btn-dark py-1 px-3" style="color:white;margin-top:15px;" href="{{ route('guest.article.detail', $a->id) }}">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -33,5 +33,5 @@
         </div>
     </div>
     <!-- Blog End -->
-    
+
 @endsection
