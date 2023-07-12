@@ -203,45 +203,75 @@ class GuestController extends Controller
         $pistonColours = [];
         $rollerColours = [];
         $vbeltColours = [];
-
+        
         for ($i = 0; $i < count($damageGroups); $i++) {
-            $damageColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $damageColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($busiGroups); $i++) {
-            $busiColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $busiColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($ecuGroups); $i++) {
-            $ecuColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $ecuColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($filterFuelPumpGroups); $i++) {
-            $filterFuelPumpColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $filterFuelPumpColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($filterUdaraGroups); $i++) {
-            $filterUdaraColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $filterUdaraColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($injektorGroups); $i++) {
-            $injektorColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $injektorColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($kampasKoplingGroups); $i++) {
-            $kampasKoplingColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $kampasKoplingColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($pistonGroups); $i++) {
-            $pistonColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $pistonColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($rollerGroups); $i++) {
-            $rollerColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $rollerColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         for ($i = 0; $i < count($vbeltGroups); $i++) {
-            $vbeltColours[] = '#354F8E';
+            $r = $randomNumber = floor(rand(0, 254));
+            $g = $randomNumber = floor(rand(0, 254));
+            $b = $randomNumber = floor(rand(0, 254));
+            $vbeltColours[] = "rgb(".$r.",".$g.",".$b.")";
         }
 
         // Membuat Data Chart untuk Damage
@@ -249,67 +279,86 @@ class GuestController extends Controller
         $damageChart->labels = array_keys($damageGroups);
         $damageChart->dataset = array_values($damageGroups);
         $damageChart->colours = $damageColours;
+        $damageChart->title = "Total Diagnosa Kerusakan";
 
         // Membuat Data Chart untuk Busi
         $busiChart = new Chart;
         $busiChart->labels = array_keys($busiGroups);
         $busiChart->dataset = array_values($busiGroups);
         $busiChart->colours = $busiColours;
+        $busiChart->title = "Total Diagnosa Kerusakan Busi";
 
         // Membuat Data Chart untuk ECU
         $ecuChart = new Chart;
         $ecuChart->labels = array_keys($ecuGroups);
         $ecuChart->dataset = array_values($ecuGroups);
         $ecuChart->colours = $ecuColours;
+        $ecuChart->title = "Total Diagnosa Kerusakan ECU";
 
         // Membuat Data Chart untuk Filter Fuel Pump
         $filterFuelPumpChart = new Chart;
         $filterFuelPumpChart->labels = array_keys($filterFuelPumpGroups);
         $filterFuelPumpChart->dataset = array_values($filterFuelPumpGroups);
         $filterFuelPumpChart->colours = $filterFuelPumpColours;
+        $filterFuelPumpChart->title = "Total Diagnosa Kerusakan Filter Fuel Pump";
 
         // Membuat Data Chart untuk Filter Udara
         $filterUdaraChart = new Chart;
         $filterUdaraChart->labels = array_keys($filterUdaraGroups);
         $filterUdaraChart->dataset = array_values($filterUdaraGroups);
         $filterUdaraChart->colours = $filterUdaraColours;
+        $filterUdaraChart->title = "Total Diagnosa Kerusakan Filter Udara";
 
         // Membuat Data Chart untuk Injektor
         $injektorChart = new Chart;
         $injektorChart->labels = array_keys($injektorGroups);
         $injektorChart->dataset = array_values($injektorGroups);
         $injektorChart->colours = $injektorColours;
+        $injektorChart->title = "Total Diagnosa Kerusakan Injektor";
 
         // Membuat Data Chart untuk Kampas Kopling
         $kampasKoplingChart = new Chart;
         $kampasKoplingChart->labels = array_keys($kampasKoplingGroups);
         $kampasKoplingChart->dataset = array_values($kampasKoplingGroups);
         $kampasKoplingChart->colours = $kampasKoplingColours;
+        $kampasKoplingChart->title = "Total Diagnosa Kerusakan Roller";
 
         // Membuat Data Chart untuk Piston
         $pistonChart = new Chart;
         $pistonChart->labels = array_keys($pistonGroups);
         $pistonChart->dataset = array_values($pistonGroups);
         $pistonChart->colours = $pistonColours;
+        $pistonChart->title = "Total Diagnosa Kerusakan Piston";
 
         // Membuat Data Chart untuk Roller
         $rollerChart = new Chart;
         $rollerChart->labels = array_keys($rollerGroups);
         $rollerChart->dataset = array_values($rollerGroups);
         $rollerChart->colours = $rollerColours;
+        $rollerChart->title = "Total Diagnosa Kerusakan Roller";
 
         // Membuat Data Chart untuk V - Belt
         $vbeltChart = new Chart;
         $vbeltChart->labels = array_keys($vbeltGroups);
         $vbeltChart->dataset = array_values($vbeltGroups);
         $vbeltChart->colours = $vbeltColours;
+        $vbeltChart->title = "Total Diagnosa Kerusakan V - Belt";
+
+        $getAllChart = [
+            'damageChart' => $damageChart, 
+            'busiChart' => $busiChart, 
+            'ecuChart' => $ecuChart, 
+            'filterFuelPumpChart' => $filterFuelPumpChart,
+            'filterUdaraChart' => $filterUdaraChart, 
+            'injektorChart' => $injektorChart, 
+            'kampasKoplingChart' => $kampasKoplingChart, 
+            'pistonChart' => $pistonChart, 
+            'rollerChart' => $rollerChart, 
+            'vbeltChart' => $vbeltChart,
+        ];
 
         return view('guest.chart', compact(
-            'damageChart', 'busiChart', 
-            'ecuChart', 'filterFuelPumpChart',
-            'filterUdaraChart', 'injektorChart', 
-            'kampasKoplingChart', 'pistonChart', 
-            'rollerChart', 'vbeltChart'
+            'getAllChart'
         ));
     }
 

@@ -18,31 +18,32 @@
     <div class="container-fluid my-1 py-1" style="background-color:#354F8E;">
         <div class="container py-5">
             <div class="row gx-5">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <img src="{{ asset('guest/assets/img/diagnosa3.png') }}" width="100%">
                 </div>
-
-                
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                  
-                    <h5 class="text-white mb-5" style="text-align:justify;">
+                <div class="col-lg-5" style="padding-left: 10%; padding-top: 15px;">
+                    <p style="text-align:justify; color:white; font-size:16px;">
                         Nama Kendaraan : {{ $temp_motorcycle->name }}
-                    </h5>
-                    <h5 class="text-white mb-5" style="text-align:justify;">
+                    </p>
+                    <p style="text-align:justify; color:white; font-size:16px;">
                         Kerusakan : </br>
                         @foreach ($temp_damage as $td)
                             {{ $td->name }} </br>
                         @endforeach
-                    </h5>
-                    <h5 class="text-white mb-5" style="text-align:justify;">
+                    </p>
+                    <p style="text-align:justify; color:white; font-size:16px;">
                         Kilo Meter : {{ $temp_km }}
-                    </h5>
-                    <h5 class="text-white mb-5" style="text-align:justify;">
-                        Saran : </br>
+                    </p>
+                </div>                
+                <div class="col-lg-12" style="padding-left: 10%; padding-top: 15px;">
+                    <p style="text-align:justify; color:white; font-size:16px;">
+                        Solusi Atau Saran : <br>
+                    </p>
+                    <div style="background-color:#354F8E; height:28%; overflow:scroll; border:none;">
                         @foreach ($temp_damage as $td)
-                            {!! $td->solution !!} </br>
+                            {!! $td->solution !!}
                         @endforeach
-                    </h5>
+                    </div>
                 </div>
                 <a class="btn rounded-pill py-3 px-5 me-3" 
                     style="margin-top:45px;background-color:white;color:#354F8E;" 

@@ -6,9 +6,10 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row gx-5">
-                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 550px; ">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-80 rounded" src="{{ asset('guest/assets/img/mekanik.png') }}" style="object-fit: cover; margin-top:80px;">
+                        <img class="position-absolute rounded" src="{{ asset('guest/assets/img/mekanik.png') }}" 
+                        style="object-fit: cover; " width="100%">
                     </div> 
                 </div>
                 <div class="col-lg-7" style="text-align:justify;color:black;">
@@ -28,9 +29,13 @@
                         sepeda motor injeksi.
                     </p>
                     <p>
-                        Pada halaman diagnosa pengguna dapat melakukan diagnosa terhadap kerusakan 
+                        Pada halaman Diagnosa pengguna dapat melakukan diagnosa terhadap kerusakan 
                         yang dialami. Pada halaman terdapat 20 gejala kerusakan yang dapat dipilih 
                         oleh pengguna untuk dapat menemukan kerusakan yang belum diketahui.  
+                    </p>
+                    <p>
+                        Pada halaman Statistik Kerusakan pengguna dapat melihat statistik data terkait 
+                        kerusakan apa saja yang dialami oleh pengguna lainnya.
                     </p>
                     <p>
                         Pada halaman Berita atau informasi pengguna dapat membaca artikel tentang 
@@ -109,22 +114,16 @@
                 <a class="btn btn-dark py-2 px-3" href="{{ route('guest.article') }}" style="color:white;margin-bottom:15px;">Lebih Banyak</a>
             </div>
             <div class="row g-5">
-                @foreach($newarticle as $na)
-                <div class="col-xl-4 col-lg-6">
-                    <div class="bg-light rounded overflow-hidden">
-                        <img class="img-fluid w-100" src="{{asset('storage/'.$na->image)}}" alt="">
-                        <div class="p-4">
-                            <a class="h3 d-block mb-3" href="{{ route('guest.article.detail', $na->id) }}">{!! Str::limit($na->title, 40) !!}</a>
-                            <p class="m-0">{!! Str::limit($na->description, 70) !!}</p>
-                        </div>
-                        <div class="d-flex justify-content-between border-top p-4">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle me-2" src="{{ asset('guest/assets/img/admin.png') }}" width="25" height="25" alt="">
-                                <small>Admin</small>
+                @foreach($newarticle as $a)
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="bg-light rounded overflow-hidden text-center">
+                            <img class="img-fluid w-100" src="{{asset('storage/'.$a->image)}}" alt="">
+                            <div class="p-4">
+                                <h5>{{ $a->title }}</h5>
+                                <a class="btn btn-dark py-1 px-3" style="color:white;margin-top:15px;" href="{{ route('guest.article.detail', $a->id) }}">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

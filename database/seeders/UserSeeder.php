@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'name' => 'Okvyan Rizky Pramarta',
                 'username' => 'admin',
                 'email' => '1941720114@student.polinema.ac.id',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('4580018764'),
                 'role' => 'Admin',
                 'created_at' => Carbon::now(),
             ],

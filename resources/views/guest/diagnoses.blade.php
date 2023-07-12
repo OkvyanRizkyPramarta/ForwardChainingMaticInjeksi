@@ -142,10 +142,10 @@
                                 <p style="color:black;"><b>&nbsp;Centang data gejala sesuai dengan apa yang pengunjung 
                                   alami untuk memperoleh informasi yang benar. </b>
                                 </p>
-                                @foreach($symptom as $s)
-                                <div class="col-12 col-sm-12 checkbox-wrapper-13" style="color:black;">
-                                    <input id="c1-13" type="checkbox" value="{{ $s->id }}" name="symptom_id[]">
-                                    <label for="c1-13">{{$s->code}} &nbsp; {{ $s->name }}</label>
+                                @foreach($symptom as $key => $s)
+                                <div class="col-12 col-sm-12 checkbox-wrapper-13" style="color:black; display: flex; align-items: center;" >
+                                    <input id="c1-13{{$key}}" type="checkbox" value="{{ $s->id }}" name="symptom_id[]" style="padding-right:20px;">
+                                    <label for="c1-13{{$key}}" >{{ $s->name }}</label>
                                 </div>
                                 @endforeach
                                 <button class="btn w-100 py-3" style="background-color:#354F8E;color:white;">
