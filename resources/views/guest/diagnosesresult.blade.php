@@ -1,5 +1,36 @@
 @extends('layouts.guest.master')
 
+<style>
+.large-2 {
+  float: left;
+  height: 300px;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+  width: 90%;
+  background: #354F8E;
+}
+
+.force-overflow {
+  min-height: 450px;
+}
+
+.large-2::-webkit-scrollbar-track {
+  border: 1px solid #000;
+  padding: 2px 0;
+  background-color: #404040;
+}
+
+.large-2::-webkit-scrollbar {
+  width: 0.5px;
+}
+
+.large-2::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #737272;
+  border: 1px solid #000;
+}
+</style>
+
 @section('content')
 
 <!-- Hero Start -->
@@ -39,11 +70,18 @@
                     <p style="text-align:justify; color:white; font-size:16px;">
                         Solusi Atau Saran : <br>
                     </p>
-                    <div style="background-color:#354F8E; height:28%; overflow:scroll; border:none;">
-                        @foreach ($temp_damage as $td)
-                            {!! $td->solution !!}
-                        @endforeach
+                    <div class="custom">
+                        <div id="front_videos">
+                            <div class="large-2">
+                                <div class="force-overflow">
+                                @foreach ($temp_damage as $td)
+                                    {!! $td->solution !!}
+                                @endforeach
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <a class="btn rounded-pill py-3 px-5 me-3" 
                     style="margin-top:45px;background-color:white;color:#354F8E;" 
