@@ -51,6 +51,15 @@
                                             @endforeach
                                         </td>
                                         <td>{{date('d-m-Y : h:m', strtotime($h->created_at));}}</td>
+                                        <td>
+                                        <form action="{{ route('history.destroy', $h->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button class="btn btn-danger notika-btn-danger">
+                                                    Hapus Data 
+                                                </button>
+                                        </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

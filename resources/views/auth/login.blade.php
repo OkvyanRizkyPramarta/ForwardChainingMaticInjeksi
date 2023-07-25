@@ -60,6 +60,14 @@ function change() {
                     <div class="card-body">
                         <form method="POST" action="{{ route('login.admin') }}">
                             @csrf
+
+                            @if(count($errors))
+                                <div class="alert alert-danger">
+                                    <strong>Terjadi kesalahan</strong> Mohon masukkan username atau password dengan benar
+                                    <br/>
+                                </div>
+                            @endif
+
                             <div class="form-group mb-3">
                                 <label>Username</label>
                                 <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required  autofocus>

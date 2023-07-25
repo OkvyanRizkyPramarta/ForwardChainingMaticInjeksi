@@ -7,6 +7,8 @@ use TCPDF;
 use App\Models\History;
 use App\Models\HistoryDamage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HistoryController extends Controller
 {
@@ -140,6 +142,11 @@ class HistoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete specific data from history_damages table
+        HistoryDamage::where('history_id', $id)->delete();
+        History::where('id', $id)->delete();
+        
+        Alert::toast('Data History Berhasil Dihapus.', 'success');
+        return redirect()->back();
     }
 }
